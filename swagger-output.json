@@ -1,0 +1,2022 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "My API",
+    "description": "Description",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/master/permission": {
+      "post": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "role_name",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "permission_name",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/permission/by-id": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "iv",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "ed",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/permission/toggle": {
+      "put": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/role": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "role_name": {
+                  "example": "any"
+                },
+                "permission_names": {
+                  "example": "any"
+                },
+                "ulb_id": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/role/by-id": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/role/toggle": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "iv": {
+                  "example": "any"
+                },
+                "ed": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/ulbType": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "ulbTypeName": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "iv": {
+                  "example": "any"
+                },
+                "ed": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/ulbType/toggle": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "iv": {
+                  "example": "any"
+                },
+                "ed": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/ulb": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "ulbName": {
+                  "example": "any"
+                },
+                "ulbTypeId": {
+                  "example": "any"
+                },
+                "ulbNameHindi": {
+                  "example": "any"
+                },
+                "ulbAddress": {
+                  "example": "any"
+                },
+                "ulbNigamTollFreeNo": {
+                  "example": "any"
+                },
+                "ulbReceiptTollfreeNo": {
+                  "example": "any"
+                },
+                "ulbMunicipalLogo": {
+                  "example": "any"
+                },
+                "ulbAgencyFullName": {
+                  "example": "any"
+                },
+                "ulbAgencyLogo": {
+                  "example": "any"
+                },
+                "ulbDomainName": {
+                  "example": "any"
+                },
+                "ulbGST": {
+                  "example": "any"
+                },
+                "ulbEntry": {
+                  "example": "any"
+                },
+                "ulbRecStatus": {
+                  "example": "any"
+                },
+                "ulbPayId": {
+                  "example": "any"
+                },
+                "ulbLatitude": {
+                  "example": "any"
+                },
+                "ulbLogintude": {
+                  "example": "any"
+                },
+                "ulbBankName": {
+                  "example": "any"
+                },
+                "ulbAccountno": {
+                  "example": "any"
+                },
+                "ulbIFSCcode": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "iv": {
+                  "example": "any"
+                },
+                "ed": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/ulb/by-id": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "iv",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "ed",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/ulb/toggle": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "iv": {
+                  "example": "any"
+                },
+                "ed": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/menu": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "label": {
+                  "example": "any"
+                },
+                "path": {
+                  "example": "any"
+                },
+                "parentId": {
+                  "example": "any"
+                },
+                "permissionName": {
+                  "example": "any"
+                },
+                "order": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "iv": {
+                  "example": "any"
+                },
+                "ed": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/menu/by-id": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "iv",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "ed",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/menu/toggle": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "iv": {
+                  "example": "any"
+                },
+                "ed": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/agency": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "agencyName": {
+                  "example": "any"
+                },
+                "ulb_id": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "iv": {
+                  "example": "any"
+                },
+                "ed": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/agency/by-id": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "iv",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "ed",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/agency/toggle": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "iv": {
+                  "example": "any"
+                },
+                "ed": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/module": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "moduleName": {
+                  "example": "any"
+                },
+                "ulb_id": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "iv": {
+                  "example": "any"
+                },
+                "ed": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/module/by-id": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "iv",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "ed",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/module/toggle": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "iv": {
+                  "example": "any"
+                },
+                "ed": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/zoneList": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "zoneListName": {
+                  "example": "any"
+                },
+                "zoneAddress": {
+                  "example": "any"
+                },
+                "zoneCommissioner": {
+                  "example": "any"
+                },
+                "zoneCommissionerNo": {
+                  "example": "any"
+                },
+                "tollfreeNo": {
+                  "example": "any"
+                },
+                "latitude": {
+                  "example": "any"
+                },
+                "longitude": {
+                  "example": "any"
+                },
+                "zoneCode": {
+                  "example": "any"
+                },
+                "ulb_id": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "iv": {
+                  "example": "any"
+                },
+                "ed": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/zone/by-id": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "iv",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "ed",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/zone/toggle": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "iv": {
+                  "example": "any"
+                },
+                "ed": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/wardList": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "zoneCircleId": {
+                  "example": "any"
+                },
+                "wardNo": {
+                  "example": "any"
+                },
+                "wardName": {
+                  "example": "any"
+                },
+                "wardCode": {
+                  "example": "any"
+                },
+                "wardArea": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "iv": {
+                  "example": "any"
+                },
+                "ed": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/wardList/by-id": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "iv",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "ed",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/ward/toggle": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "iv": {
+                  "example": "any"
+                },
+                "ed": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/bank": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "bankName": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "iv": {
+                  "example": "any"
+                },
+                "ed": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/bank/by-id": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "iv",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "ed",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/bank/toggle": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "iv": {
+                  "example": "any"
+                },
+                "ed": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/employee": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userEmail": {
+                  "example": "any"
+                },
+                "userPhone": {
+                  "example": "any"
+                },
+                "agencyId": {
+                  "example": "any"
+                },
+                "moduleTypeId": {
+                  "example": "any"
+                },
+                "emp_FirstName": {
+                  "example": "any"
+                },
+                "emp_LastName": {
+                  "example": "any"
+                },
+                "emp_aadharNo": {
+                  "example": "any"
+                },
+                "emp_Address": {
+                  "example": "any"
+                },
+                "emp_JoiningDate": {
+                  "example": "any"
+                },
+                "emp_HolderName": {
+                  "example": "any"
+                },
+                "emp_accountNo": {
+                  "example": "any"
+                },
+                "emp_ifscCode": {
+                  "example": "any"
+                },
+                "emp_bankName": {
+                  "example": "any"
+                },
+                "emp_jobTitle": {
+                  "example": "any"
+                },
+                "emp_companyName": {
+                  "example": "any"
+                },
+                "emp_experienceYears": {
+                  "example": "any"
+                },
+                "emp_jobDescription": {
+                  "example": "any"
+                },
+                "emp_blockPayment": {
+                  "example": "any"
+                },
+                "ulbIds": {
+                  "example": "any"
+                },
+                "roles": {
+                  "example": "any"
+                },
+                "wards": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/employee/by-id": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "iv",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "ed",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/employee/toggle": {
+      "put": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/employee/connect-ulb": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "iv": {
+                  "example": "any"
+                },
+                "ed": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/employee/disconnect-ulb": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "iv": {
+                  "example": "any"
+                },
+                "ed": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/employee/connect-role": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "iv": {
+                  "example": "any"
+                },
+                "ed": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/employee/disconnect-role": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "iv": {
+                  "example": "any"
+                },
+                "ed": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/employee/map-wards": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "iv": {
+                  "example": "any"
+                },
+                "ed": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/employee/remove-ward": {
+      "put": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/employee/map-permission": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "iv": {
+                  "example": "any"
+                },
+                "ed": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/employee/remove-permission": {
+      "put": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/master/employee/getMenuWithEmployee-id": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "ulb_id",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/getAllMasterData": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/get-calculation": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "floorDetails": {
+                  "example": "any"
+                },
+                "roadType": {
+                  "example": "any"
+                },
+                "built_area": {
+                  "example": "any"
+                },
+                "constructionType": {
+                  "example": "any"
+                },
+                "const_age": {
+                  "example": "any"
+                },
+                "assessFrom": {
+                  "example": "any"
+                },
+                "assessUpto": {
+                  "example": "any"
+                },
+                "wardArea": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/get-usageType": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/get-penalty": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/details": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "iv",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "ed",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/newAssessment": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "preview",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "ulbId": {
+                  "example": "any"
+                },
+                "wardId": {
+                  "example": "any"
+                },
+                "propertyTypeId": {
+                  "example": "any"
+                },
+                "roadTypeId": {
+                  "example": "any"
+                },
+                "usageTypeId": {
+                  "example": "any"
+                },
+                "zoneId": {
+                  "example": "any"
+                },
+                "primaryContactNo": {
+                  "example": "any"
+                },
+                "rainWaterHarvest": {
+                  "example": "any"
+                },
+                "plotArea": {
+                  "example": "any"
+                },
+                "builtupGroundArea": {
+                  "example": "any"
+                },
+                "constructionDate": {
+                  "example": "any"
+                },
+                "waterConnType": {
+                  "example": "any"
+                },
+                "waterTaxType": {
+                  "example": "any"
+                },
+                "holdingType": {
+                  "example": "any"
+                },
+                "newHoldingNumber": {
+                  "example": "any"
+                },
+                "wardAreaNo": {
+                  "example": "any"
+                },
+                "ownerShipType_id": {
+                  "example": "any"
+                },
+                "oldHoldingNumber": {
+                  "example": "any"
+                },
+                "oldUniquePropertyId": {
+                  "example": "any"
+                },
+                "primaryHouseNo": {
+                  "example": "any"
+                },
+                "primaryMohalla": {
+                  "example": "any"
+                },
+                "primaryAddress": {
+                  "example": "any"
+                },
+                "primaryPinCode": {
+                  "example": "any"
+                },
+                "corresHouseNo": {
+                  "example": "any"
+                },
+                "corresMohalla": {
+                  "example": "any"
+                },
+                "corresAddress": {
+                  "example": "any"
+                },
+                "corresPincode": {
+                  "example": "any"
+                },
+                "phoneNo": {
+                  "example": "any"
+                },
+                "emailAddress": {
+                  "example": "any"
+                },
+                "khataNo": {
+                  "example": "any"
+                },
+                "plotNo": {
+                  "example": "any"
+                },
+                "maujaName": {
+                  "example": "any"
+                },
+                "thanaNo": {
+                  "example": "any"
+                },
+                "owners": {
+                  "example": "any"
+                },
+                "floors": {
+                  "example": "any"
+                },
+                "propertyType": {
+                  "example": "any"
+                },
+                "ulb_id": {
+                  "example": "any"
+                },
+                "road_type_id": {
+                  "example": "any"
+                },
+                "const_typeId": {
+                  "example": "any"
+                },
+                "const_age": {
+                  "example": "any"
+                },
+                "build_area": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/get-propertyData": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "wardId",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "ownerName",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "uniquePropertyId",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "primaryContactNo",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/get-propertyDetails": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "propertyMasterId": {
+                  "example": "any"
+                },
+                "propertyTypeId": {
+                  "example": "any"
+                },
+                "roadTypeId": {
+                  "example": "any"
+                },
+                "usageTypeId": {
+                  "example": "any"
+                },
+                "zoneId": {
+                  "example": "any"
+                },
+                "wardId": {
+                  "example": "any"
+                },
+                "primaryContactNo": {
+                  "example": "any"
+                },
+                "rainWaterHarvest": {
+                  "example": "any"
+                },
+                "plotArea": {
+                  "example": "any"
+                },
+                "builtupGroundArea": {
+                  "example": "any"
+                },
+                "constructionDate": {
+                  "example": "any"
+                },
+                "waterConnType": {
+                  "example": "any"
+                },
+                "waterTaxType": {
+                  "example": "any"
+                },
+                "holdingType": {
+                  "example": "any"
+                },
+                "newHoldingNumber": {
+                  "example": "any"
+                },
+                "wardAreaNo": {
+                  "example": "any"
+                },
+                "ownerShipType_id": {
+                  "example": "any"
+                },
+                "oldHoldingNumber": {
+                  "example": "any"
+                },
+                "oldUniquePropertyId": {
+                  "example": "any"
+                },
+                "primaryHouseNo": {
+                  "example": "any"
+                },
+                "primaryMohalla": {
+                  "example": "any"
+                },
+                "primaryAddress": {
+                  "example": "any"
+                },
+                "primaryPinCode": {
+                  "example": "any"
+                },
+                "corresHouseNo": {
+                  "example": "any"
+                },
+                "corresMohalla": {
+                  "example": "any"
+                },
+                "corresAddress": {
+                  "example": "any"
+                },
+                "corresPincode": {
+                  "example": "any"
+                },
+                "phoneNo": {
+                  "example": "any"
+                },
+                "emailAddress": {
+                  "example": "any"
+                },
+                "khataNo": {
+                  "example": "any"
+                },
+                "plotNo": {
+                  "example": "any"
+                },
+                "maujaName": {
+                  "example": "any"
+                },
+                "thanaNo": {
+                  "example": "any"
+                },
+                "owners": {
+                  "example": "any"
+                },
+                "floors": {
+                  "example": "any"
+                },
+                "road_type_id": {
+                  "example": "any"
+                },
+                "const_typeId": {
+                  "example": "any"
+                },
+                "const_age": {
+                  "example": "any"
+                },
+                "build_area": {
+                  "example": "any"
+                },
+                "wardArea": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    }
+  }
+}

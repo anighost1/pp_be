@@ -1,0 +1,54 @@
+{
+  "name": "panipat_panel_backend",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
+  "scripts": {
+    "dev": "nodemon index.ts",
+    "build": "npx tsc",
+    "postbuild": "copyfiles -u 1 generated/**/* build && copyfiles swagger-output.json build",
+    "start": "tsc && node build/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generateDoc": "node swagger.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@prisma/client": "^6.7.0",
+    "axios": "^1.11.0",
+    "bcrypt": "^6.0.0",
+    "copyfiles": "^2.4.1",
+    "cors": "^2.8.5",
+    "date-fns": "^4.1.0",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "http": "^0.0.1-security",
+    "http-proxy-middleware": "^3.0.5",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.2",
+    "sharp": "^0.34.3",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1",
+    "swagger-ui-express": "^5.0.1",
+    "uuid": "^13.0.0",
+    "ws": "^8.18.3"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/cors": "^2.8.18",
+    "@types/express": "^5.0.1",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/multer": "^2.0.0",
+    "@types/node": "^22.15.17",
+    "@types/ws": "^8.18.1",
+    "nodemon": "^3.1.10",
+    "prisma": "^6.7.0",
+    "swagger-autogen": "^2.23.7",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
+  }
+}

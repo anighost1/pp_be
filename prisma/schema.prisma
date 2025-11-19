@@ -1,0 +1,209 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/panel"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model ulb_master {
+  id                 Int                  @id @default(autoincrement())
+  ulb_type_id        Int
+  name               String?
+  name_hindi         String?
+  address            String?
+  nigamtollfreeno    String?
+  receipttollfreeno  String?
+  bankname           String?
+  accountno          String?
+  ifsccode           String?
+  municipallogo      String?
+  agencyfullname     String?
+  agencylogo         String?
+  domainname         String?
+  gstno              String?
+  entryby            Int?
+  recstatus          Int                  @default(1)
+  payee_id           String?
+  latitude           String?
+  longitude          String?
+  created_at         DateTime             @default(now())
+  updated_at         DateTime             @default(now()) @updatedAt
+  ulb_type           ulb_type             @relation(fields: [ulb_type_id], references: [id])
+  user               user[]
+  role               role[]
+  permissions        permissions[]
+  agency             agency[]
+  module             module[]
+  zone_circle_master zone_circle_master[]
+  employee           employee[]
+}
+
+model ulb_type {
+  id         Int          @id @default(autoincrement())
+  name       String
+  recstatus  Int          @default(1)
+  created_at DateTime     @default(now())
+  updated_at DateTime     @default(now()) @updatedAt
+  ulb_master ulb_master[]
+}
+
+model zone_circle_master {
+  id                       Int           @id @default(autoincrement())
+  ulb_id                   Int?
+  name                     String
+  zone_address             String?
+  zone_commissioner        String?
+  zon_commissioner_contact String?
+  tollFree_No              String?
+  zonecode                 String?
+  latitude                 String?
+  longitude                String?
+  recstatus                Int?          @default(1)
+  created_at               DateTime      @default(now())
+  updated_at               DateTime      @default(now()) @updatedAt
+  ulb                      ulb_master?   @relation(fields: [ulb_id], references: [id])
+  ward_master              ward_master[]
+}
+
+model ward_master {
+  id             Int                @id @default(autoincrement())
+  zone_circle_id Int
+  ward_no        String
+  name           String?
+  ward_code      String?
+  area           String?
+  recstatus      Int                @default(1)
+  created_at     DateTime           @default(now())
+  updated_at     DateTime           @default(now()) @updatedAt
+  zone_circle    zone_circle_master @relation(fields: [zone_circle_id], references: [id])
+  user           user[]
+}
+
+model user {
+  id                 Int           @id @default(autoincrement())
+  username           String        @unique
+  email              String?       @unique
+  phone              String        @unique
+  password           String
+  recstatus          Int           @default(1)
+  created_at         DateTime      @default(now())
+  updated_at         DateTime      @default(now()) @updatedAt
+  ulb                ulb_master[]
+  roles              role[]        @relation("UserRoles")
+  permissions        permissions[] @relation("UserPermissions")
+  revokedPermissions permissions[] @relation("UserRevokedPermissions")
+  employee           employee?
+  ward               ward_master[]
+}
+
+model employee {
+  id                Int         @id @default(autoincrement())
+  user_id           Int         @unique
+  agency_id         Int
+  moduleType_id     Int
+  empCode           String
+  empFirstName      String
+  empLastName       String
+  empImage          String?
+  contactNo         String
+  empEmail          String?
+  aadharNo          String?
+  empAddress        String?
+  joiningDate       String?
+  accountHolderName String?
+  accountNo         String?
+  ifscCode          String?
+  bankName          String?
+  jobTitle          String?
+  companyName       String?
+  experienceYears   String?
+  jobDescription    String?
+  reportToTypeId    String?
+  reportToUserId    String?
+  blockPayment      String?
+  is_active         Boolean?    @default(true)
+  entryBy           String?
+  entryIpAddress    String?
+  updateBy          String?
+  updateIpAddress   String?
+  recstatus         Int         @default(1)
+  created_at        DateTime    @default(now())
+  updated_at        DateTime    @default(now()) @updatedAt
+  user              user        @relation(fields: [user_id], references: [id])
+  agency            agency      @relation(fields: [agency_id], references: [id])
+  module            module      @relation(fields: [moduleType_id], references: [id])
+  ulb_master        ulb_master? @relation(fields: [ulb_masterId], references: [id])
+  ulb_masterId      Int?
+}
+
+model role {
+  id          Int           @id @default(autoincrement())
+  name        String        @unique
+  recstatus   Int           @default(1)
+  ulb_id      Int
+  created_at  DateTime      @default(now())
+  updated_at  DateTime      @default(now()) @updatedAt
+  ulb         ulb_master    @relation(fields: [ulb_id], references: [id])
+  permissions permissions[] @relation("RolePermissions")
+  users       user[]        @relation("UserRoles")
+}
+
+model permissions {
+  id              Int        @id @default(autoincrement())
+  name            String
+  recstatus       Int        @default(1)
+  ulb_id          Int
+  created_at      DateTime   @default(now())
+  updated_at      DateTime   @default(now()) @updatedAt
+  ulb             ulb_master @relation(fields: [ulb_id], references: [id])
+  roles           role[]     @relation("RolePermissions")
+  users           user[]     @relation("UserPermissions")
+  revokedForUsers user[]     @relation("UserRevokedPermissions")
+  menus           menu[]     @relation("MenuPermissions")
+  modules         module[]
+}
+
+model menu {
+  id          Int           @id @default(autoincrement())
+  label       String
+  path        String
+  parentId    Int?
+  recstatus   Int           @default(1)
+  order       Int?          @default(0)
+  created_at  DateTime      @default(now())
+  updated_at  DateTime      @default(now()) @updatedAt()
+  parent      menu?         @relation("MenuHierarchy", fields: [parentId], references: [id])
+  children    menu[]        @relation("MenuHierarchy")
+  permissions permissions[] @relation("MenuPermissions")
+}
+
+model agency {
+  id         Int        @id @default(autoincrement())
+  name       String
+  ulb_id     Int
+  created_at DateTime   @default(now())
+  ulb        ulb_master @relation(fields: [ulb_id], references: [id])
+  recstatus  Int        @default(1)
+  employee   employee[]
+}
+
+model module {
+  id          Int           @id @default(autoincrement())
+  name        String
+  ulb_id      Int
+  created_at  DateTime      @default(now())
+  ulb         ulb_master    @relation(fields: [ulb_id], references: [id])
+  recstatus   Int           @default(1)
+  employee    employee[]
+  permissions permissions[]
+}
+
+model bank {
+  id         Int      @id @default(autoincrement())
+  name       String
+  created_at DateTime @default(now())
+  recstatus  Int      @default(1)
+}

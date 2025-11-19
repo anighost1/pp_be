@@ -1,0 +1,9 @@
+* run "npm i"
+
+* Setup .env file
+
+* run "npx prisma db pull" (only if there is an update in schema, otherwise DO NOT RUN THIS SCRIPT)
+
+* run "node scripts.js" (this will generat eall schemas)
+
+* run "npm run dev" for development server or "npm run build" and "npm start" for production
