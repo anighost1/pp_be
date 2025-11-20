@@ -91,7 +91,44 @@ export const getChartData = async (
       count: Number(row.count),
     }));
 
-    const data = { areaChartData, barChart: barChartData, pieChartData };
+    //For all
+    //     const hourlyVariation = await pp_user.$queryRaw<
+    //       { hour: number; total: number }[]
+    //     >`
+    //   SELECT 
+    //     EXTRACT(HOUR FROM created_at) AS hour,
+    //     COUNT(*) AS total
+    //   FROM survey_master
+    //   WHERE recstatus = 1
+    //   GROUP BY EXTRACT(HOUR FROM created_at)
+    //   ORDER BY hour;
+    // `;
+
+    //For specific date
+    //     const hourlyVariation = await prisma.$queryRaw<
+    //       { hour: number; total: number }[]
+    //     >`
+    //   SELECT 
+    //     EXTRACT(HOUR FROM created_at) AS hour,
+    //     COUNT(*) AS total
+    //   FROM survey_master
+    //   WHERE DATE(created_at) = ${date}
+    //   GROUP BY EXTRACT(HOUR FROM created_at)
+    //   ORDER BY hour;
+    // `;
+    const hourlyVariation = await pp_user.$queryRaw<
+      { hour: number; total: number }[]
+    >`
+  SELECT 
+    EXTRACT(HOUR FROM created_at) AS hour,
+    COUNT(*) AS total
+  FROM survey_master
+  WHERE created_at::date = CURRENT_DATE
+  GROUP BY EXTRACT(HOUR FROM created_at)
+  ORDER BY hour;
+`;
+
+    const data = { areaChartData, barChart: barChartData, pieChartData, hourlyVariation: convertBigIntToString(hourlyVariation) };
 
     genrateResponse(
       res,
