@@ -101,6 +101,14 @@ export const getConsumerList = async (
       pp_user.user_charge_data.count({ where }),
     ]);
 
+
+    await Promise.all(
+      data.map(async (consumer: any) => {
+        const wasteCollectionStatus = await getCurrentWasteCollectionStatus(Number(consumer?.id))
+        consumer.current_waste_collection_status = wasteCollectionStatus
+      })
+    )
+
     // Send paginated response
     genrateResponse(
       res,
@@ -125,3 +133,34 @@ export const getConsumerList = async (
     );
   }
 };
+
+
+const getCurrentWasteCollectionStatus = async (consumer_id: number): Promise<boolean> => {
+
+  const now = new Date();
+
+  const hour = now.getHours();
+
+  let slotStart: Date;
+  let slotEnd: Date;
+
+  if (hour < 12) {
+    slotStart = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0);
+    slotEnd = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 11, 59, 59);
+  } else {
+    slotStart = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12, 0, 0);
+    slotEnd = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59);
+  }
+
+  const count = await pp_user.waste_collection.count({
+    where: {
+      user_charge_id: Number(consumer_id),
+      created_at: {
+        gte: slotStart,
+        lte: slotEnd,
+      },
+    },
+  });
+
+  return count > 0;
+}
