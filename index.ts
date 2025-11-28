@@ -18,6 +18,8 @@ import dashboardRoute from "./route/dashboard/dashboard.route";
 import mobileDriverRoute from "./route/mobile-driver/driver.route";
 import downloadRoute from "./route/download/download.route";
 import propertyRoute from "./route/property/property.route";
+import odcRoute from "./route/odc/odc.route";
+
 import { createServer } from "http";
 import { Server } from "socket.io";
 
@@ -111,6 +113,7 @@ app.use("/api/driver", driverRoute);
 app.use("/api/dashboard", dashboardRoute);
 app.use("/api/mobile-driver", mobileDriverRoute);
 app.use("/api/cryptography", cryptographyRoute);
+app.use("/api/odc", odcRoute);
 
 // Create HTTP server
 const httpServer = createServer(app);

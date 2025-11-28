@@ -66,13 +66,37 @@ model waste_collection {
 }
 
 model grievance {
-  id               BigInt           @id @default(autoincrement())
-  user_id          Int
-  mobile           String
-  email            String?
-  remark           String
-  entry_ip         String?
-  recstatus        Int              @default(1)
-  created_at       DateTime         @default(now())
-  updated_at       DateTime         @default(now()) @updatedAt
+  id         BigInt   @id @default(autoincrement())
+  user_id    Int
+  mobile     String
+  email      String?
+  remark     String
+  entry_ip   String?
+  recstatus  Int      @default(1)
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
+}
+
+model vehicle_type {
+  id                   Int                    @id @default(autoincrement())
+  name                 String
+  recstatus            Int                    @default(1)
+  created_at           DateTime               @default(now())
+  updated_at           DateTime               @default(now()) @updatedAt
+  on_demand_collection on_demand_collection[]
+}
+
+model on_demand_collection {
+  id              Int          @id @default(autoincrement())
+  user_id         Int
+  vehicle_type_id Int
+  mobile          String
+  address         String
+  email           String?
+  remark          String?
+  entry_ip        String?
+  recstatus       Int          @default(1)
+  created_at      DateTime     @default(now())
+  updated_at      DateTime     @default(now()) @updatedAt
+  vehicle_type    vehicle_type @relation(fields: [vehicle_type_id], references: [id])
 }

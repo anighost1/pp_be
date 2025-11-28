@@ -78,17 +78,17 @@ export const createEmployee = async (req: AuthenticatedRequest, res: Response) =
             // emp_reportToUserId,
             emp_blockPayment,
             ulbIds,
-            roles,
+            role,
             wards
         } = req.body;
-
+        
         const file = req?.file
         if (file && file.mimetype.startsWith("image/")) {
             sizeReducer(file.path);
         }
 
         // Default password
-        const defaultPassword = "bira@123";
+        const defaultPassword = "0000";
         const hashedPassword = await bcrypt.hash(defaultPassword, 10);
 
         // Run inside transaction
@@ -101,13 +101,13 @@ export const createEmployee = async (req: AuthenticatedRequest, res: Response) =
                     phone: userPhone,
                     password: hashedPassword,
                     ulb: {
-                        connect: JSON.parse(ulbIds)?.map((id: number) => ({ id: Number(id) })) || [],
+                        connect: ulbIds?.map((id: number) => ({ id: Number(id) })) || [],
                     },
                     roles: {
-                        connect: JSON.parse(roles)?.map((id: number) => ({ id: Number(id) })),
+                        connect: role?.map((id: number) => ({ id: Number(id) })),
                     },
                     ward: {
-                        connect: JSON.parse(wards)?.map((id: number) => ({ id: Number(id) })),
+                        connect: wards?.map((id: number) => ({ id: Number(id) })),
                     }
                 },
             });
