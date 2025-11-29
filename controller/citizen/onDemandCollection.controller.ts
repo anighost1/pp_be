@@ -75,6 +75,13 @@ export const getOdc = async (req: AuthenticatedRequest, res: Response) => {
 
         const odc = await user_charge.on_demand_collection.findMany({
             where,
+            include: {
+                vehicle_type: {
+                    select: {
+                        name: true
+                    }
+                }
+            },
             skip,
             take: limit,
             orderBy: { id: "desc" }
