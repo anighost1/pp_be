@@ -1,3 +1,4 @@
+import { waste_collection } from './../../generated/user_charge/index.d';
 import { Request, Response } from "express";
 import genrateResponse from "../../lib/generateResponse";
 import HttpStatus from "../../lib/httpStatus";
@@ -245,6 +246,12 @@ export const getSurveyDashboardCounts = async (
   try {
     const currentUser = req.user as AuthPayload;
 
+    const startOfToday = new Date();
+    startOfToday.setHours(0, 0, 0, 0);
+
+    const endOfToday = new Date();
+    endOfToday.setHours(23, 59, 59, 999);
+
     const totalSurveyCount = await pp_user.survey_master.count({
       where: { recstatus: 1 },
     });
@@ -269,12 +276,22 @@ export const getSurveyDashboardCounts = async (
       },
     });
 
+    const todaysWasteCollection = await pp_user.waste_collection.count({
+      where: {
+        created_at: {
+          gte: startOfToday,
+          lte: endOfToday,
+        },
+      },
+    });
+
     const data = {
       taggedCount: totalSurveyCount,
       unTaggedCount: totalConsumerCount - totalSurveyCount,
       totalConsumerCount: totalConsumerCount,
       surveyorCount: surveyorCount,
       driverCount: driverCount,
+      todaysWasteCollection: todaysWasteCollection
     };
 
     genrateResponse(
