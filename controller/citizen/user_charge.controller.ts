@@ -5,6 +5,7 @@ import genrateResponse from '../../lib/generateResponse';
 import HttpStatus from '../../lib/httpStatus'
 import { AuthenticatedRequest } from '../../middleware/authMiddleware';
 import convertBigIntToString from '../../lib/bigIntConversion';
+import { getCurrentWasteCollectionStatus, getCurrentWasteCollectionStatusWithDate } from '../consumer/consumer.controller';
 
 const panel = new panelClient()
 const user_charge = new userChargeClient()
@@ -27,11 +28,16 @@ export const getUserCharge = async (req: AuthenticatedRequest, res: Response) =>
             throw new Error('No user data found')
         }
 
-        const userChargeData = await user_charge.user_charge_data.findFirst({
+        const userChargeData: any = await user_charge.user_charge_data.findFirst({
             where: {
                 mobile: String(userDetails?.phone)
             }
         })
+
+        const { collectionStatus, lastCollectionDate } = await getCurrentWasteCollectionStatusWithDate(Number(userChargeData?.id))
+
+        userChargeData.current_waste_collection_status = collectionStatus
+        userChargeData.last_collection_date = lastCollectionDate
 
         genrateResponse(res, HttpStatus.OK, 'Data fetched successfully', convertBigIntToString(userChargeData));
     } catch (err: any) {
@@ -39,3 +45,4 @@ export const getUserCharge = async (req: AuthenticatedRequest, res: Response) =>
         genrateResponse(res, err?.status || HttpStatus.BadRequest, err?.message || 'Fetching failed');
     }
 };
+

@@ -135,7 +135,7 @@ export const getConsumerList = async (
 };
 
 
-const getCurrentWasteCollectionStatus = async (consumer_id: number): Promise<boolean> => {
+export const getCurrentWasteCollectionStatus = async (consumer_id: number): Promise<boolean> => {
 
   const now = new Date();
 
@@ -163,4 +163,47 @@ const getCurrentWasteCollectionStatus = async (consumer_id: number): Promise<boo
   });
 
   return count > 0;
+}
+
+export const getCurrentWasteCollectionStatusWithDate = async (consumer_id: number): Promise<any> => {
+
+  const now = new Date();
+
+  const hour = now.getHours();
+
+  let slotStart: Date;
+  let slotEnd: Date;
+
+  if (hour < 12) {
+    slotStart = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0);
+    slotEnd = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 11, 59, 59);
+  } else {
+    slotStart = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12, 0, 0);
+    slotEnd = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59);
+  }
+
+  console.log(consumer_id)
+
+  const count = await pp_user.waste_collection.findMany({
+    where: {
+      user_charge_id: Number(consumer_id),
+      created_at: {
+        gte: slotStart,
+        lte: slotEnd,
+      },
+    },
+    select: {
+      created_at: true
+    },
+    orderBy: {
+      created_at: 'desc'
+    }
+  });
+  
+  console.log(count)
+
+  return {
+    collectionStatus: count.length > 0,
+    lastCollectionDate: count.length > 0 ? count[0].created_at : null
+  }
 }

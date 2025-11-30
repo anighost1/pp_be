@@ -12,7 +12,7 @@ const panel = new panelClient()
 
 const JWT_SECRET = process.env.JWT_SECRET
 
-export function buildMenuTree(menus: Array<{ id: number; label: string; path: string; parentId: number | null }>) {
+export function buildMenuTree(menus: Array<{ id: number; label: string; path: string; order: number | null; parentId: number | null }>) {
     const menusById = new Map<number, any>();
     const tree: any[] = [];
 
@@ -20,6 +20,8 @@ export function buildMenuTree(menus: Array<{ id: number; label: string; path: st
     menus.forEach(menu => {
         menusById.set(menu.id, { ...menu, children: [] });
     });
+
+    menus.sort((a, b) => b.order! - a.order!);
 
     // Assign children to parent menus
     menus.forEach(menu => {
@@ -53,8 +55,8 @@ export const login = async (req: Request, res: Response) => {
                         name: true
                     }
                 },
-                ward:{
-                    select:{
+                ward: {
+                    select: {
                         id: true,
                         ward_no: true
                     }
@@ -82,12 +84,15 @@ export const login = async (req: Request, res: Response) => {
             const allPermissions = await panel.permissions.findMany();
             permissions = new Set(allPermissions.map(p => ({ id: p.id, name: p.name })));
 
-            const allMenus = await panel.menu.findMany();
+            const allMenus = await panel.menu.findMany({
+                orderBy: { order: 'desc' }
+            });
             menus = buildMenuTree(
                 allMenus.map(menu => ({
                     id: menu.id,
                     label: menu.label,
                     path: menu.path,
+                    order: menu.order,
                     parentId: menu.parentId ?? null,
                 }))
             );
@@ -102,7 +107,7 @@ export const login = async (req: Request, res: Response) => {
             user.revokedPermissions.forEach(p => deleteById(permissions, p.id));
 
             // Collect menus
-            const menuMap = new Map<number, { id: number; label: string; path: string; parentId: number | null }>();
+            const menuMap = new Map<number, { id: number; label: string; path: string; order: number | null; parentId: number | null }>();
 
             // Menus from roles' permissions
             user.roles.forEach(role => {
@@ -112,6 +117,7 @@ export const login = async (req: Request, res: Response) => {
                             id: menu.id,
                             label: menu.label,
                             path: menu.path,
+                            order: menu.order,
                             parentId: menu.parentId ?? null,
                         });
                     });
@@ -125,6 +131,7 @@ export const login = async (req: Request, res: Response) => {
                         id: menu.id,
                         label: menu.label,
                         path: menu.path,
+                        order: menu.order,
                         parentId: menu.parentId ?? null,
                     });
                 });
@@ -148,7 +155,7 @@ export const login = async (req: Request, res: Response) => {
             roles: user.roles.map(r => r.name),
             permissions: Array.from(permissions),
             ulb: user?.ulb.map((ulb) => ({ id: ulb?.id, name: ulb?.name })),
-            ward: user?.ward.map((w)=>({
+            ward: user?.ward.map((w) => ({
                 id: w.id,
                 ward_no: w.ward_no
             })),

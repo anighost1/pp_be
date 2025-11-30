@@ -81,7 +81,7 @@ export const createEmployee = async (req: AuthenticatedRequest, res: Response) =
             role,
             wards
         } = req.body;
-        
+
         const file = req?.file
         if (file && file.mimetype.startsWith("image/")) {
             sizeReducer(file.path);
@@ -201,7 +201,8 @@ export const getAllEmployeesWithUsers = async (req: AuthenticatedRequest, res: R
             orderBy: { id: "desc" },
             include: {
                 ulb: true,
-                employee: true
+                employee: true,
+                ward: true,
             },
         });
 
@@ -785,7 +786,6 @@ export const connectRole = async (req: Request, res: Response) => {
         const data = decryptData({ encryptedData: ed as string, iv: iv as string });
 
         const { user_id, roles } = data;
-        console.log("Updating user:", user_id, "with roles:", roles);
 
 
         if (!user_id || roles?.length === 0) {
@@ -910,6 +910,7 @@ export const getModuleByEmployeeId = async (req: AuthenticatedRequest, res: Resp
                     id: menu.id,
                     label: menu.label,
                     path: menu.path,
+                    order: menu.order,
                     parentId: menu.parentId ?? null,
                     recstatus: menu.recstatus, //  return recstatus in response
                 }))
@@ -926,7 +927,7 @@ export const getModuleByEmployeeId = async (req: AuthenticatedRequest, res: Resp
             // Collect menus
             const menuMap = new Map<
                 number,
-                { id: number; label: string; path: string; parentId: number | null; recstatus: number }
+                { id: number; label: string; path: string; parentId: number | null; order: number | null ;recstatus: number }
             >();
 
             // Menus from roles' permissions
@@ -940,6 +941,7 @@ export const getModuleByEmployeeId = async (req: AuthenticatedRequest, res: Resp
                                 label: menu.label,
                                 path: menu.path,
                                 parentId: menu.parentId ?? null,
+                                order: menu.order,
                                 recstatus: menu.recstatus, // ✅ return recstatus
                             });
                         });

@@ -14,6 +14,7 @@ import {
   PrismaClient as panelClient,
   Prisma as panelPrisma,
 } from "../../generated/panel";
+import { getCurrentWasteCollectionStatus } from "../consumer/consumer.controller";
 
 const pp_user = new userChargeClient();
 const pp_panel = new panelClient();
@@ -141,6 +142,13 @@ export const getWasteCollectionList = async (
         user_full_name: fullName,
       };
     });
+
+    await Promise.all(
+      enrichedData.map(async (consumer: any) => {
+        const wasteCollectionStatus = await getCurrentWasteCollectionStatus(Number(consumer?.id))
+        consumer.current_waste_collection_status = wasteCollectionStatus
+      })
+    )
 
     const response = {
       data: enrichedData,
