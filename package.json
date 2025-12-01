@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "nodemon index.ts",
     "build": "npx tsc",
-    "postbuild": "copyfiles -u 1 generated/**/* build && copyfiles swagger-output.json build",
+    "postbuild": "cp -r generated build/generated && cp swagger-output.json build/",
     "start": "tsc && node build/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "generateDoc": "node swagger.js"
